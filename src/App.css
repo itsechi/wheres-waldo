@@ -25,6 +25,7 @@ body {
   border: 8px solid transparent;
   border-image: url(http://www.hauntedchocolatier.net/wp-content/uploads/2021/10/nav_bar_border.png) 21 fill stretch;
   border-image-width: 21px;
+  position: relative;
 }
 
 .characters {
@@ -34,10 +35,14 @@ body {
   padding: 1.5rem 2rem;
   display: flex;
   position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
 
 .imgContainer {
   overflow: scroll;
+  position: relative;
 }
 
 .img {
