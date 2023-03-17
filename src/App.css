@@ -50,6 +50,19 @@ body {
   margin-bottom: -1rem;
 }
 
+.charDropdown {
+  gap: 0.5rem;
+  /* border: 25px solid transparent; */
+  border-image: url("http://www.hauntedchocolatier.net/wp-content/uploads/2021/10/blog_border.png") 48 fill repeat;
+  border-image-width: 48px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 328px;
+}
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
