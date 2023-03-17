@@ -19,8 +19,11 @@ export const Gameboard = () => {
     const relX = (x / e.target.offsetWidth).toFixed(2);
     const relY = (y / e.target.offsetHeight).toFixed(2);
     checkCoords(relX, relY);
-    setDropdownCoords({ x: x, y: y });
-    setDropdown(!dropdown);
+    if (!e.target.classList.contains("charDropdown")) {
+      setDropdownCoords({ x: x, y: y });
+      setDropdown(!dropdown);
+    }
+    console.log(e.target);
   };
 
   const checkCoords = async (x, y) => {

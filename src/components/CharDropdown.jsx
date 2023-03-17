@@ -4,9 +4,9 @@ export const CharDropdown = (props) => {
       className="charDropdown"
       style={{ top: props.coords.y, left: props.coords.x }}
     >
-      <img src={props.emily}></img>
-      <img src={props.elliott}></img>
-      <img src={props.haley}></img>
+      <img className="char" src={props.emily}></img>
+      <img className="char" src={props.elliott}></img>
+      <img className="char" src={props.haley}></img>
     </div>
   );
 };
