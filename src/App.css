@@ -38,6 +38,7 @@ body {
   top: 0;
   left: 0;
   z-index: 9999;
+  align-items: flex-end;
 }
 
 .imgContainer {
