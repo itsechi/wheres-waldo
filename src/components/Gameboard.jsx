@@ -11,6 +11,10 @@ import { query, getDocs, collection, where } from "firebase/firestore";
 export const Gameboard = () => {
   const [dropdown, setDropdown] = React.useState(false);
   const [dropdownCoords, setDropdownCoords] = React.useState({ x: 0, y: 0 });
+  const [character, setCharacter] = React.useState({
+    name: "",
+    coords: { x: "", y: "" },
+  });
 
   const relativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();
@@ -18,12 +22,11 @@ export const Gameboard = () => {
     const y = e.clientY - bounds.top;
     const relX = (x / e.target.offsetWidth).toFixed(2);
     const relY = (y / e.target.offsetHeight).toFixed(2);
-    checkCoords(relX, relY);
+    checkCoords(relX, relY, e);
     if (!e.target.classList.contains("charDropdown")) {
       setDropdownCoords({ x: x, y: y });
       setDropdown(!dropdown);
     }
-    console.log(e.target);
   };
 
   const checkCoords = async (x, y) => {
@@ -34,10 +37,17 @@ export const Gameboard = () => {
     );
     const querySnapshot = await getDocs(coordsQuery);
     const docs = querySnapshot.docs[0];
-    if (docs) {
-      const character = docs.id;
-      const coords = docs.data();
-      console.log(character, coords);
+    if (!docs) return;
+    const name = docs.id;
+    const coords = docs.data();
+    setCharacter({ name: name, coords: { x: coords.x, y: coords.y } });
+  };
+
+  const chooseCharacter = (e) => {
+    const target = e.target.dataset.name;
+    if (target === character.name) {
+      console.log("found the character!");
+      setCharacter({ name: "", coords: { x: "", y: "" } });
     }
   };
 
@@ -55,6 +65,7 @@ export const Gameboard = () => {
             haley={haley}
             elliott={elliott}
             emily={emily}
+            chooseCharacter={chooseCharacter}
           />
         )}
         <img className="img" src={bg}></img>
