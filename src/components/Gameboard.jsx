@@ -2,15 +2,37 @@ import bg from "../assets/game.png";
 import emily from "../assets/emily.png";
 import elliott from "../assets/elliott.png";
 import haley from "../assets/haley.png";
+import { db } from "../firebase";
 
-export const Gameboard = (props) => {
+import {
+  query,
+  getDocs,
+  collection,
+  where,
+} from "firebase/firestore";
+
+export const Gameboard = () => {
   const relativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();
     const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
     const relX = (x / e.target.offsetWidth).toFixed(2);
     const relY = (y / e.target.offsetHeight).toFixed(2);
-    props.checkCoords(relX, relY);
+    checkCoords(relX, relY);
+  };
+
+  const checkCoords = async (x, y) => {
+    const coordsQuery = query(
+      collection(db, "characters"),
+      where("x", "==", x)
+    );
+    const querySnapshot = await getDocs(coordsQuery);
+    const docs = querySnapshot.docs[0];
+    if (docs) {
+      const character = docs.id;
+      const coords = docs.data();
+      console.log(character, coords);
+    }
   };
 
   return (
