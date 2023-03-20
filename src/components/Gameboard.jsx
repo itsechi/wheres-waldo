@@ -22,11 +22,11 @@ export const Gameboard = () => {
     const y = e.clientY - bounds.top;
     const relX = (x / e.target.offsetWidth).toFixed(2);
     const relY = (y / e.target.offsetHeight).toFixed(2);
+    if (e.target.classList.contains("charDropdown")) return;
     checkCoords(relX, relY, e);
-    if (!e.target.classList.contains("charDropdown")) {
-      setDropdownCoords({ x: x, y: y });
-      setDropdown(!dropdown);
-    }
+    setDropdownCoords({ x: x, y: y });
+    setDropdown(!dropdown);
+    setCharacter({ name: "", coords: { x: "", y: "" } });
   };
 
   const checkCoords = async (x, y) => {
@@ -44,12 +44,11 @@ export const Gameboard = () => {
   };
 
   const chooseCharacter = (e) => {
+    if (e.target.classList.contains("charDropdown")) return;
     const target = e.target.dataset.name;
+    if (target !== character.name) return;
     console.log(character);
-    if (target === character.name) {
-      console.log("found the character!");
-      setCharacter({ name: "", coords: { x: "", y: "" } });
-    }
+    console.log("found the character!");
   };
 
   return (
