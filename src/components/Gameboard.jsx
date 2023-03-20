@@ -1,7 +1,7 @@
 import bg from "../assets/game.png";
 import emily from "../assets/emily.png";
 import elliott from "../assets/elliott.png";
-import haley from "../assets/haley.png";
+import alex from "../assets/alex.png";
 import { db } from "../firebase";
 import { CharDropdown } from "./CharDropdown";
 import React from "react";
@@ -32,8 +32,8 @@ export const Gameboard = () => {
   const checkCoords = async (x, y) => {
     const coordsQuery = query(
       collection(db, "characters"),
-      where("x", "==", x),
-      where("y", "==", y)
+      where("x", "in", [x, (+x + 0.01).toFixed(2), (+x - 0.01).toFixed(2)]),
+      where("y", "in", [y, (+y + 0.01).toFixed(2), (+y - 0.01).toFixed(2)])
     );
     const querySnapshot = await getDocs(coordsQuery);
     const docs = querySnapshot.docs[0];
@@ -45,6 +45,7 @@ export const Gameboard = () => {
 
   const chooseCharacter = (e) => {
     const target = e.target.dataset.name;
+    console.log(character);
     if (target === character.name) {
       console.log("found the character!");
       setCharacter({ name: "", coords: { x: "", y: "" } });
@@ -56,13 +57,13 @@ export const Gameboard = () => {
       <div className="characters">
         <img src={emily}></img>
         <img src={elliott}></img>
-        <img src={haley}></img>
+        <img src={alex}></img>
       </div>
       <div className="imgContainer" onClick={relativeCoords}>
         {dropdown && (
           <CharDropdown
             coords={dropdownCoords}
-            haley={haley}
+            alex={alex}
             elliott={elliott}
             emily={emily}
             chooseCharacter={chooseCharacter}

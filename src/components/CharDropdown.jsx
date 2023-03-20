@@ -8,7 +8,7 @@ export const CharDropdown = (props) => {
     >
       <img className="char" src={props.emily} data-name="emily"></img>
       <img className="char" src={props.elliott} data-name="elliott"></img>
-      <img className="char" src={props.haley} data-name="haley"></img>
+      <img className="char" src={props.alex} data-name="alex"></img>
     </div>
   );
 };
