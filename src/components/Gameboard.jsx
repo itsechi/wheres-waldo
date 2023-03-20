@@ -47,16 +47,16 @@ export const Gameboard = () => {
     if (e.target.classList.contains("charDropdown")) return;
     const target = e.target.dataset.name;
     if (target !== character.name) return;
-    console.log(character);
-    console.log("found the character!");
+    const characterID = character.name;
+    document.getElementById(characterID).classList.add("found");
   };
 
   return (
     <main className="game">
       <div className="characters">
-        <img src={emily}></img>
-        <img src={elliott}></img>
-        <img src={alex}></img>
+        <img id="emily" src={emily}></img>
+        <img id="elliott" src={elliott}></img>
+        <img id="alex" src={alex}></img>
       </div>
       <div className="imgContainer" onClick={relativeCoords}>
         {dropdown && (

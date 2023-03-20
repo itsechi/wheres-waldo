@@ -41,6 +41,10 @@ body {
   align-items: flex-end;
 }
 
+.found {
+  opacity: 0.5;
+}
+
 .imgContainer {
   overflow: scroll;
   position: relative;
