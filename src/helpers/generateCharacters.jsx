@@ -1,18 +1,18 @@
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 export const generateCharacters = () => {
   const storage = getStorage();
   const finalCharacters = [];
 
   const allCharacters = [
-    "abigail",
-    "alex",
-    "caroline",
-    "clint",
-    "demetrius",
-    "elliott",
-    "emily",
-    "george",
+    'abigail',
+    'alex',
+    'caroline',
+    'clint',
+    'demetrius',
+    'elliott',
+    'emily',
+    'george',
   ];
 
   function shuffleArray(a) {

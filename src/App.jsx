@@ -1,9 +1,9 @@
-import "./App.css";
-import React from "react";
-import { Header } from "./components/Header";
-import { Gameboard } from "./components/Gameboard";
-import { MenuScreen } from "./components/MenuScreen";
-import { generateCharacters } from "./helpers/generateCharacters";
+import './App.css';
+import React from 'react';
+import { Header } from './components/Header';
+import { Gameboard } from './components/Gameboard';
+import { MenuScreen } from './components/MenuScreen';
+import { generateCharacters } from './helpers/generateCharacters';
 
 export default function App() {
   const [gameStart, setGameStart] = React.useState(false);
