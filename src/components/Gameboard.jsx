@@ -1,46 +1,17 @@
 import bg from "../assets/game.png";
-import emily from "../assets/emily.png";
-import elliott from "../assets/elliott.png";
-import alex from "../assets/alex.png";
 import { db } from "../firebase";
 import { CharDropdown } from "./CharDropdown";
 import React from "react";
-
 import { query, getDocs, collection, where } from "firebase/firestore";
 
-export const Gameboard = () => {
+export const Gameboard = (props) => {
   const [dropdown, setDropdown] = React.useState(false);
   const [dropdownCoords, setDropdownCoords] = React.useState({ x: 0, y: 0 });
   const [character, setCharacter] = React.useState({
     name: "",
     coords: { x: "", y: "" },
   });
-  const [characters, setCharacters] = React.useState([]);
-
-  React.useEffect(() => {
-    const charactersArr = [
-      "abigail",
-      "alex",
-      "caroline",
-      "clint",
-      "demetrius",
-      "elliott",
-      "emily",
-      "evelyn",
-      "george",
-    ];
-
-    function shuffle(a) {
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    const chars = shuffle(charactersArr).slice(0, 3);
-    setCharacters(chars);
-  }, []);
+  const { characters } = props;
 
   const getRelativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();
@@ -56,6 +27,7 @@ export const Gameboard = () => {
   };
 
   const checkCoords = async (x, y) => {
+    console.log(x, y);
     const coordsQuery = query(
       collection(db, "characters"),
       where("x", "in", [x, (+x + 0.01).toFixed(2), (+x - 0.01).toFixed(2)]),
@@ -67,11 +39,13 @@ export const Gameboard = () => {
     const name = docs.id;
     const coords = docs.data();
     setCharacter({ name: name, coords: { x: coords.x, y: coords.y } });
+    console.log(docs.id);
   };
 
   const chooseCharacter = (e) => {
     if (e.target.classList.contains("charDropdown")) return;
     const target = e.target.dataset.name;
+    console.log(target);
     if (target !== character.name) return;
     const characterID = character.name;
     document.getElementById(characterID).classList.add("found");
@@ -79,18 +53,18 @@ export const Gameboard = () => {
 
   return (
     <main className="game">
-      <div className="characters">
-        <img id="emily" src={emily}></img>
-        <img id="elliott" src={elliott}></img>
-        <img id="alex" src={alex}></img>
-      </div>
+      {characters.length > 0 && (
+        <div className="characters">
+          <img id={characters[0].name} src={characters[0].img}></img>
+          <img id={characters[1].name} src={characters[1].img}></img>
+          <img id={characters[2].name} src={characters[2].img}></img>
+        </div>
+      )}
       <div className="imgContainer" onClick={getRelativeCoords}>
         {dropdown && (
           <CharDropdown
             coords={dropdownCoords}
-            alex={alex}
-            elliott={elliott}
-            emily={emily}
+            characters={characters}
             chooseCharacter={chooseCharacter}
           />
         )}
