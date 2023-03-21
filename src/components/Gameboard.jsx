@@ -15,8 +15,34 @@ export const Gameboard = () => {
     name: "",
     coords: { x: "", y: "" },
   });
+  const [characters, setCharacters] = React.useState([]);
 
-  const relativeCoords = (e) => {
+  React.useEffect(() => {
+    const charactersArr = [
+      "abigail",
+      "alex",
+      "caroline",
+      "clint",
+      "demetrius",
+      "elliott",
+      "emily",
+      "evelyn",
+      "george",
+    ];
+
+    function shuffle(a) {
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    const chars = shuffle(charactersArr).slice(0, 3);
+    setCharacters(chars);
+  }, []);
+
+  const getRelativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();
     const x = e.clientX - bounds.left;
     const y = e.clientY - bounds.top;
@@ -58,7 +84,7 @@ export const Gameboard = () => {
         <img id="elliott" src={elliott}></img>
         <img id="alex" src={alex}></img>
       </div>
-      <div className="imgContainer" onClick={relativeCoords}>
+      <div className="imgContainer" onClick={getRelativeCoords}>
         {dropdown && (
           <CharDropdown
             coords={dropdownCoords}
