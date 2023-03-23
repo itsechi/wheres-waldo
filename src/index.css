@@ -1,12 +1,23 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: url(./assets/bg.png) no-repeat center/cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Silkscreen', cursive;
   line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -14,56 +25,72 @@
   -webkit-text-size-adjust: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  position: relative;
   padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 1.5em;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background: none;
+  border: none;
+  outline: none;
+  color: #ffcf56;
+  text-shadow: #000000 1px 1px 1px, #000000 1px 1px 1px;
+  transition: color 0.15s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 0;
+  background-color: #ffcf56;
+  clip-path: polygon(100% 51%, 0 0, 0 100%);
+  z-index: 1;
+  transform: translate(2%, -20%);
+  opacity: 0;
+  transition: all 0.1s;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 50%;
+  left: 0;
+  background-color: hsl(45, 100%, 10%);
+  clip-path: polygon(100% 51%, 0 0, 0 100%);
+  z-index: 0;
+  transform: translateY(-25%);
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+
+button:hover {
+  color: #ffcf56;
+}
+
+button:hover::before {
+  opacity: 1;
+}
+
+button:hover::after {
+  opacity: 1;
+}
+
+button:focus {
+  color: #ffffff;
+}
+
+button:focus::before {
+  opacity: 1;
+  background-color: #ffffff;
+}
+
+button:focus::after {
+  opacity: 1;
 }

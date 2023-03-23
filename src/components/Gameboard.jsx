@@ -55,7 +55,7 @@ export const Gameboard = (props) => {
           <img id={characters[2].name} src={characters[2].img}></img>
         </div>
       )}
-      <div className="imgContainer" onClick={getRelativeCoords}>
+      <div className="mapContainer" onClick={getRelativeCoords}>
         {dropdown && (
           <CharDropdown
             coords={dropdownCoords}
@@ -63,7 +63,7 @@ export const Gameboard = (props) => {
             chooseCharacter={chooseCharacter}
           />
         )}
-        <img className="img" src={bg}></img>
+        <img className="map" src={bg}></img>
       </div>
     </main>
   );

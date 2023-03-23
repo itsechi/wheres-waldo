@@ -1,11 +1,9 @@
-body {
+.startScreen {
   display: flex;
+  align-items: center;
   justify-content: center;
-  background: url(./assets/bg.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: 'Silkscreen', cursive;
+  flex-direction: column;
+  text-align: center;
 }
 
 .header {
@@ -15,17 +13,18 @@ body {
 }
 
 .logo {
-  height: 100px;
+  height: 80px;
 }
 
 .game {
   display: flex;
   width: 80vw;
-  height: 80vh;
+  height: 70vh;
   border: 8px solid transparent;
   border-image: url(http://www.hauntedchocolatier.net/wp-content/uploads/2021/10/nav_bar_border.png) 21 fill stretch;
   border-image-width: 21px;
   position: relative;
+  margin-bottom: 1rem;
 }
 
 .characters {
@@ -34,27 +33,27 @@ body {
   border-image-width: 48px;
   padding: 1.5rem 2rem;
   display: flex;
+  align-items: flex-end;
   position: absolute;
   top: 0;
   left: 0;
   z-index: 9999;
-  align-items: flex-end;
 }
 
 .found {
   opacity: 0.5;
 }
 
-.imgContainer {
+.mapContainer {
   overflow: scroll;
   position: relative;
 }
 
-.img {
+.map {
   margin-bottom: -1rem;
 }
 
-.charDropdown {
+.characterDropdown {
   gap: 0.5rem;
   border-image: url("http://www.hauntedchocolatier.net/wp-content/uploads/2021/10/blog_border.png") 48 fill repeat;
   border-image-width: 48px;
@@ -62,15 +61,13 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
-  left: 328px;
 }
 
-.char {
+.character {
   cursor: pointer;
 }
 
-.char:hover {
+.character:hover {
   transform: scale(110%);
 }
 
