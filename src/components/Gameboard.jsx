@@ -6,6 +6,7 @@ import { query, getDocs, collection, where } from 'firebase/firestore';
 
 export const Gameboard = (props) => {
   const { characters } = props;
+  const { charactersFound } = props;
   const [dropdown, setDropdown] = React.useState(false);
   const [dropdownCoords, setDropdownCoords] = React.useState({});
   const [character, setCharacter] = React.useState({});
@@ -44,6 +45,21 @@ export const Gameboard = (props) => {
     const target = e.target.dataset.name;
     if (target !== character.name) return;
     document.getElementById(character.name).classList.add('found');
+    setFound(character);
+    finishGame();
+  };
+
+  const setFound = (character) => {
+    charactersFound.map((char) => {
+      char.name === character.name && !char.found && (char.found = true);
+    });
+  };
+
+  const finishGame = () => {
+    if (charactersFound.every((char) => char.found)) {
+      props.setGameEnd(true);
+      console.log('Found all characters!');
+    }
   };
 
   return (
