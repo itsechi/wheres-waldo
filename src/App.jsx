@@ -11,35 +11,38 @@ export default function App() {
   const [gameEnd, setGameEnd] = React.useState(false);
   const [characters, setCharacters] = React.useState([]);
   const [time, setTime] = React.useState({ start: 0, end: 0 });
-  const charactersFound = characters.map((char) => {
-    return {
-      name: char.name,
-      found: false,
-    };
-  });
 
   React.useEffect(() => {
     const finalCharacters = generateCharacters();
     setCharacters(finalCharacters);
   }, []);
 
+  const setFound = (character) => {
+    const updatedCharacters = characters.map((char) => {
+      if (char.name === character.name && !char.found)
+        return { ...char, found: true };
+      else return char;
+    });
+    setCharacters(updatedCharacters);
+  };
+
   return (
     <>
       <Header />
-      {/* {!gameStart && (
+      {!gameStart && (
         <MenuScreen setGameStart={setGameStart} setTime={setTime} time={time} />
       )}
       {gameStart && !gameEnd && (
         <Gameboard
           characters={characters}
-          charactersFound={charactersFound}
           setGameEnd={setGameEnd}
           setTime={setTime}
           time={time}
+          setFound={setFound}
         />
       )}
-      {gameEnd && <ResultScreen time={time} />} */}
-      {<ResultScreen Screen time={time} />}
+      {gameEnd && <ResultScreen time={time} />}
+      {/* {<ResultScreen Screen time={time} />} */}
     </>
   );
 }

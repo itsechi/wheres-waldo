@@ -31,6 +31,7 @@ export const generateCharacters = () => {
       return finalCharacters.push({
         name: char,
         img: url,
+        found: false,
       });
     });
   });

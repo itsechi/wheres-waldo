@@ -7,7 +7,6 @@ import { formatTime } from '../helpers/formatTime';
 
 export const Gameboard = (props) => {
   const { characters } = props;
-  const { charactersFound } = props;
   const [dropdown, setDropdown] = React.useState(false);
   const [dropdownCoords, setDropdownCoords] = React.useState({});
   const [character, setCharacter] = React.useState({});
@@ -56,32 +55,26 @@ export const Gameboard = (props) => {
     if (e.target.classList.contains('charDropdown')) return;
     const target = e.target.dataset.name;
     if (target !== character.name) return;
-    document.getElementById(character.name).classList.add('found');
-    setFound(character);
+    props.setFound(character);
     finishGame();
   };
 
-  const setFound = (character) => {
-    charactersFound.map((char) => {
-      char.name === character.name && !char.found && (char.found = true);
-    });
-  };
-
   const finishGame = () => {
-    if (charactersFound.every((char) => char.found)) {
-      props.setGameEnd(true);
-      props.setTime({ ...props.time, end: Date.now() });
-      console.log('Found all characters!');
-    }
+    console.log(characters.every((char) => char.found))
+    // if (characters.every((char) => char.found)) {
+    //   props.setGameEnd(true);
+    //   props.setTime({ ...props.time, end: Date.now() });
+    //   console.log('Found all characters!');
+    // }
   };
 
   return (
     <main className="game">
       {characters.length > 0 && (
         <div className="characters">
-          <img id={characters[0].name} src={characters[0].img}></img>
-          <img id={characters[1].name} src={characters[1].img}></img>
-          <img id={characters[2].name} src={characters[2].img}></img>
+          <img className={`${characters[0].found && "found"}`} src={characters[0].img}></img>
+          <img className={`${characters[1].found && "found"}`} src={characters[1].img}></img>
+          <img className={`${characters[2].found && "found"}`} src={characters[2].img}></img>
         </div>
       )}
       <p className="timer">{formatTime(time)}</p>
