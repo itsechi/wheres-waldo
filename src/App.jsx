@@ -51,7 +51,6 @@ export default function App() {
         />
       )}
       {gameEnd && <ResultScreen time={time} />}
-      {/* {<ResultScreen Screen time={time} />} */}
     </>
   );
 }

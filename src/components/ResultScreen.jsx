@@ -14,6 +14,7 @@ export const ResultScreen = (props) => {
   const [name, setName] = React.useState('');
   const [leaderboard, setLeaderboard] = React.useState([]);
   const [error, setError] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -33,6 +34,7 @@ export const ResultScreen = (props) => {
     }
     setName('');
     getLeaderboard();
+    setSubmitted(true);
   };
 
   const getLeaderboard = async () => {
@@ -59,10 +61,16 @@ export const ResultScreen = (props) => {
   return (
     <main className="resultScreen">
       <p>You found all characters in {time}!</p>
-      <p>Enter your name:</p>
-      <input value={name} onChange={handleChange} type="text"></input>
-      {error && <p className="error">Must enter a name before submitting!</p>}
-      <button onClick={submitName}>Submit</button>
+      {!submitted && (
+        <>
+          <p>Enter your name:</p>
+          <input value={name} onChange={handleChange} type="text"></input>
+          {error && (
+            <p className="error">Must enter a name before submitting!</p>
+          )}
+          <button onClick={submitName}>Submit</button>
+        </>
+      )}
 
       <section className="leaderboard">
         <ol>{displayLiderboard}</ol>
