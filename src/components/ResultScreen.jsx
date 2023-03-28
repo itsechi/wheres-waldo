@@ -50,7 +50,8 @@ export const ResultScreen = (props) => {
   const displayLiderboard = leaderboard.map((score, i) => {
     return (
       <li className="score" key={i}>
-        {`${score.name} => ${score.time}`}
+        <span className="scoreName">{score.name}</span>
+        {` => ${score.time}`}
       </li>
     );
   });
