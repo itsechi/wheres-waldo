@@ -26,7 +26,7 @@ export default function App() {
   return (
     <>
       <Header />
-      {!gameStart && (
+      {/* {!gameStart && (
         <MenuScreen setGameStart={setGameStart} setTime={setTime} time={time} />
       )}
       {gameStart && !gameEnd && (
@@ -38,7 +38,8 @@ export default function App() {
           time={time}
         />
       )}
-      {gameEnd && <ResultScreen time={time} />}
+      {gameEnd && <ResultScreen time={time} />} */}
+      {<ResultScreen Screen time={time} />}
     </>
   );
 }

@@ -76,6 +76,13 @@
   cursor: pointer;
 }
 
+.resultScreen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .character:hover {
   transform: scale(110%);
 }
