@@ -29,7 +29,7 @@ export const ResultScreen = (props) => {
     try {
       await addDoc(collection(db, 'leaderboard'), score);
     } catch (error) {
-      console.error('Error saving cart items to Firebase Database', error);
+      console.error('Error saving score to Firebase Database', error);
     }
     setName('');
     getLeaderboard();
@@ -47,7 +47,7 @@ export const ResultScreen = (props) => {
     });
   };
 
-  const displayLideraboard = leaderboard.map((score, i) => {
+  const displayLiderboard = leaderboard.map((score, i) => {
     return (
       <li className="score" key={i}>
         {`${score.name} => ${score.time}`}
@@ -64,7 +64,7 @@ export const ResultScreen = (props) => {
       <button onClick={submitName}>Submit</button>
 
       <section className="leaderboard">
-        <ol>{displayLideraboard}</ol>
+        <ol>{displayLiderboard}</ol>
       </section>
     </main>
   );
