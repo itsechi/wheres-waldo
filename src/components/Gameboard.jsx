@@ -72,7 +72,6 @@ export const Gameboard = (props) => {
       props.setGameEnd(true);
       props.setTime({ ...props.time, end: Date.now() });
       console.log('Found all characters!');
-      ``;
     }
   };
 

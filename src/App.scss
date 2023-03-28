@@ -76,6 +76,10 @@
   cursor: pointer;
 }
 
+.character:hover {
+  transform: scale(110%);
+}
+
 .resultScreen {
   display: flex;
   align-items: center;
@@ -83,8 +87,29 @@
   flex-direction: column;
 }
 
-.character:hover {
-  transform: scale(110%);
+.leaderboard {
+  list-style-position: inside;
+  background-color: hsla(0, 0%, 0%, 0.2);
+  min-height: 30vh;
+  height: 25rem;
+  overflow-y: scroll;
+  color: white;
+  text-shadow: #000000 1px 1px 1px;
+  border: 2px solid white;
+  box-shadow: #000000 1px 1px 1px;
+  margin-top: 2rem;
+  min-width: 30vw;
+}
+
+.score {
+  border-bottom: 2px solid white;
+  padding: 1rem;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #ffcf56;
+  margin-top: 0.5rem;
 }
 
 /* custom scrollbar */
