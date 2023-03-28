@@ -70,8 +70,10 @@ export const Gameboard = (props) => {
   const finishGame = () => {
     if (charactersFound.every((char) => char.found)) {
       props.setGameEnd(true);
+      props.setTime({ ...props.time, end: Date.now() });
       console.log('Found all characters!');
-``    }
+      ``;
+    }
   };
 
   return (
