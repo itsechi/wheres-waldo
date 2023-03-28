@@ -33,7 +33,7 @@ export default function App() {
           setGameEnd={setGameEnd}
         />
       )}
-      {gameEnd && <ResultScreen />}
+      {gameEnd && <ResultScreen startDate={startDate}/>}
     </>
   );
 }

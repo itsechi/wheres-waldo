@@ -44,6 +44,15 @@
   opacity: 0.5;
 }
 
+.timer {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  z-index: 9999;
+  font-size: 1.25rem;
+  text-shadow: #000000 1px 1px 1px, #000000 1px 1px 1px, #000000 1px 1px 1px, #000000 1px 1px 1px, #000000 1px 1px 1px, #000000 1px 1px 1px;
+}
+
 .mapContainer {
   overflow: scroll;
   position: relative;

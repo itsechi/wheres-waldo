@@ -3,6 +3,7 @@ import React from 'react';
 import { db } from '../helpers/firebase';
 import { CharDropdown } from './CharDropdown';
 import { query, getDocs, collection, where } from 'firebase/firestore';
+import { formatTime } from '../helpers/formatTime';
 
 export const Gameboard = (props) => {
   const { characters } = props;
@@ -10,6 +11,17 @@ export const Gameboard = (props) => {
   const [dropdown, setDropdown] = React.useState(false);
   const [dropdownCoords, setDropdownCoords] = React.useState({});
   const [character, setCharacter] = React.useState({});
+  const [time, setTime] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((time) => time + 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [time]);
 
   const getRelativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();
@@ -59,7 +71,7 @@ export const Gameboard = (props) => {
     if (charactersFound.every((char) => char.found)) {
       props.setGameEnd(true);
       console.log('Found all characters!');
-    }
+``    }
   };
 
   return (
@@ -71,6 +83,7 @@ export const Gameboard = (props) => {
           <img id={characters[2].name} src={characters[2].img}></img>
         </div>
       )}
+      <p className="timer">{formatTime(time)}</p>
       <div className="mapContainer" onClick={getRelativeCoords}>
         {dropdown && (
           <CharDropdown
