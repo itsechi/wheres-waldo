@@ -24,6 +24,15 @@ export default function App() {
       else return char;
     });
     setCharacters(updatedCharacters);
+    finishGame(updatedCharacters);
+  };
+
+  const finishGame = (charactersArr) => {
+    if (charactersArr.every((char) => char.found)) {
+      setGameEnd(true);
+      setTime({ ...time, end: Date.now() });
+      console.log('Found all characters!');
+    }
   };
 
   return (

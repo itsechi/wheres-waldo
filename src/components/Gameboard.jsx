@@ -56,17 +56,8 @@ export const Gameboard = (props) => {
     const target = e.target.dataset.name;
     if (target !== character.name) return;
     props.setFound(character);
-    finishGame();
   };
 
-  const finishGame = () => {
-    console.log(characters.every((char) => char.found))
-    // if (characters.every((char) => char.found)) {
-    //   props.setGameEnd(true);
-    //   props.setTime({ ...props.time, end: Date.now() });
-    //   console.log('Found all characters!');
-    // }
-  };
 
   return (
     <main className="game">
