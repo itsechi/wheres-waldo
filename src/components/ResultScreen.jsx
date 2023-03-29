@@ -68,7 +68,9 @@ export const ResultScreen = (props) => {
           {error && (
             <p className="error">Must enter a name before submitting!</p>
           )}
-          <button onClick={submitName}>Submit</button>
+          <button className="submitBtn" onClick={submitName}>
+            Submit
+          </button>
         </>
       )}
       <button onClick={props.startAgain}>Play again</button>
