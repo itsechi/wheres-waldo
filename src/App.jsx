@@ -17,16 +17,17 @@ export default function App() {
     setCharacters(finalCharacters);
   }, []);
 
+  
   const setFound = (character) => {
     const updatedCharacters = characters.map((char) => {
       if (char.name === character.name && !char.found)
-        return { ...char, found: true };
+      return { ...char, found: true };
       else return char;
     });
     setCharacters(updatedCharacters);
     finishGame(updatedCharacters);
   };
-
+  
   const finishGame = (charactersArr) => {
     if (charactersArr.every((char) => char.found)) {
       setGameEnd(true);
@@ -34,10 +35,14 @@ export default function App() {
       console.log('Found all characters!');
     }
   };
-
+  
+  const startAgain = () => {
+    window.location.reload();
+  };
+  
   return (
     <>
-      <Header />
+      <Header startAgain={startAgain} />
       {!gameStart && (
         <MenuScreen setGameStart={setGameStart} setTime={setTime} time={time} />
       )}
@@ -50,7 +55,7 @@ export default function App() {
           setFound={setFound}
         />
       )}
-      {gameEnd && <ResultScreen time={time} />}
+      {gameEnd && <ResultScreen time={time} startAgain={startAgain} />}
     </>
   );
 }

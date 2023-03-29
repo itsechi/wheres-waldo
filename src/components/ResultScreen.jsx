@@ -71,7 +71,7 @@ export const ResultScreen = (props) => {
           <button onClick={submitName}>Submit</button>
         </>
       )}
-
+      <button onClick={props.startAgain}>Play again</button>
       <section className="leaderboard">
         <ol>{displayLiderboard}</ol>
       </section>
