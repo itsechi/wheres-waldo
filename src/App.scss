@@ -31,6 +31,7 @@
   border-image-width: 21px;
   position: relative;
   margin-bottom: 1rem;
+  animation: opacity 0.1s;
 }
 
 .characters {
@@ -131,6 +132,10 @@
   margin-top: 1rem;
 }
 
+.hidden {
+  display: none;
+}
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -157,4 +162,14 @@
 
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0);
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100;
+  }
 }

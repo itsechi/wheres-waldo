@@ -11,6 +11,19 @@ export const Gameboard = (props) => {
   const [dropdownCoords, setDropdownCoords] = React.useState({});
   const [character, setCharacter] = React.useState({});
   const [time, setTime] = React.useState(0);
+  const [imageStatus, setImageStatus] = React.useState({
+    map: false,
+    char1: false,
+    char2: false,
+    char3: false,
+  });
+  const [loaded, setLoaded] = React.useState(false);
+
+  const changeImageStatus = (image) => {
+    const images = { ...imageStatus, [image]: true };
+    setImageStatus(images);
+    if (Object.values(images).every((value) => value === true)) setLoaded(true);
+  };
 
   React.useEffect(() => {
     const interval = setInterval(() => {
@@ -58,14 +71,25 @@ export const Gameboard = (props) => {
     props.setFound(character);
   };
 
-
   return (
-    <main className="game">
+    <main className={loaded ? 'game' : 'hidden'}>
       {characters.length > 0 && (
         <div className="characters">
-          <img className={`${characters[0].found && "found"}`} src={characters[0].img}></img>
-          <img className={`${characters[1].found && "found"}`} src={characters[1].img}></img>
-          <img className={`${characters[2].found && "found"}`} src={characters[2].img}></img>
+          <img
+            className={`${characters[0].found && 'found'}`}
+            src={characters[0].img}
+            onLoad={() => changeImageStatus('char1')}
+          ></img>
+          <img
+            className={`${characters[1].found && 'found'}`}
+            src={characters[1].img}
+            onLoad={() => changeImageStatus('char2')}
+          ></img>
+          <img
+            className={`${characters[2].found && 'found'}`}
+            src={characters[2].img}
+            onLoad={() => changeImageStatus('char3')}
+          ></img>
         </div>
       )}
       <p className="timer">{formatTime(time)}</p>
@@ -77,7 +101,11 @@ export const Gameboard = (props) => {
             chooseCharacter={chooseCharacter}
           />
         )}
-        <img className="map" src={bg}></img>
+        <img
+          className="map"
+          src={bg}
+          onLoad={() => changeImageStatus('map')}
+        ></img>
       </div>
     </main>
   );
