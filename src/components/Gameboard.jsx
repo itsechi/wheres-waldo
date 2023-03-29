@@ -19,12 +19,6 @@ export const Gameboard = (props) => {
   });
   const [loaded, setLoaded] = React.useState(false);
 
-  const changeImageStatus = (image) => {
-    const images = { ...imageStatus, [image]: true };
-    setImageStatus(images);
-    if (Object.values(images).every((value) => value === true)) setLoaded(true);
-  };
-
   React.useEffect(() => {
     const interval = setInterval(() => {
       setTime((time) => time + 1);
@@ -34,6 +28,12 @@ export const Gameboard = (props) => {
       clearInterval(interval);
     };
   }, [time]);
+
+  const changeImageStatus = (image) => {
+    const images = { ...imageStatus, [image]: true };
+    setImageStatus(images);
+    if (Object.values(images).every((value) => value === true)) setLoaded(true);
+  };
 
   const getRelativeCoords = (e) => {
     const bounds = e.target.getBoundingClientRect();

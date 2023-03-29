@@ -17,29 +17,27 @@ export default function App() {
     setCharacters(finalCharacters);
   }, []);
 
-  
   const setFound = (character) => {
     const updatedCharacters = characters.map((char) => {
       if (char.name === character.name && !char.found)
-      return { ...char, found: true };
+        return { ...char, found: true };
       else return char;
     });
     setCharacters(updatedCharacters);
     finishGame(updatedCharacters);
   };
-  
+
   const finishGame = (charactersArr) => {
     if (charactersArr.every((char) => char.found)) {
       setGameEnd(true);
       setTime({ ...time, end: Date.now() });
-      console.log('Found all characters!');
     }
   };
-  
+
   const startAgain = () => {
     window.location.reload();
   };
-  
+
   return (
     <>
       <Header startAgain={startAgain} />
