@@ -92,20 +92,21 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .leaderboard {
   list-style-position: inside;
   background-color: hsla(0, 0%, 0%, 0.2);
-  min-height: 30vh;
-  height: 25rem;
+  min-height: 10vh;
+  max-height: 25rem;
   overflow-y: scroll;
   color: white;
   text-shadow: #000000 1px 1px 1px;
   border: 2px solid white;
   box-shadow: #000000 1px 1px 1px;
   margin-top: 2rem;
-  min-width: 30vw;
+  min-width: 20rem;
 }
 
 .score {
