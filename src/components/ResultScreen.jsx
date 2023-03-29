@@ -16,6 +16,10 @@ export const ResultScreen = (props) => {
   const [error, setError] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
 
+  React.useEffect(() => {
+    getLeaderboard();
+  });
+
   const handleChange = (e) => {
     setName(e.target.value);
   };
